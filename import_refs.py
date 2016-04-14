@@ -55,7 +55,7 @@ def import_sources(filename):
     elif tag == 'DP':
       sourceyear.text = val[0:4]
     elif tag == 'FAU':
-      match = re.search(r'^([\w-]+),\s*([\w-]+)\s*(.+)?' ,val)
+      match = re.search(r'^([\w\'-]+),\s*([\w\'-]+)\s*(.+)?' ,val)
       if match:
         person = ET.SubElement(sourcenames, 'b:Person')
         lastname = ET.SubElement(person, 'b:Last')
@@ -78,9 +78,7 @@ def import_sources(filename):
 def main():
   if len(sys.argv)<2:
     print 'This converts a PubMed .nbib file to XML compatible with a the Word citation manager'
-    print '  Usage: process_biblio citations.nbib'
-    print '  The output can be cut and pasted into Sources.xml, though some manual cleanup to'
-    print '  avoid duplicate tags might be necessary'
+    print '  Usage: import_refs citations.nbib'
     return
   import_sources(sys.argv[1])
 
